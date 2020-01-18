@@ -14,9 +14,19 @@ class ProjectsController extends Controller
         return view('projects.index', compact('projects'));
     }
 
+    public function show(Project $project)
+    {
+        return view('project.show', compact('project'));
+    }
+
     public function store()
     {
-        Project::create(request('title', 'description'));
+        $attributes = request()->validate([
+            'title' => required,
+            'description' => required
+        ]);
+
+        auth()->user()->projects()->create($attributes);
 
         return redirect('/projects');
     }
