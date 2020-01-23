@@ -1,0 +1,26 @@
+@mixin global--default {
+    .projects {
+        &__wrapper {
+            > .row {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+        &__card {
+            height: rem(200);
+            padding: 0;
+        }
+        &__title {
+            > a {
+                color: #212529;
+
+                &:hover {
+                    text-decoration: none;
+                    color: #000;;
+                }
+            }
+        }
+    }
+}
+
+@include global--default;

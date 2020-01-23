@@ -11356,3 +11356,22 @@ a.text-dark:focus {
   }
 }
 
+.projects__wrapper > .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.projects__card {
+  height: 12.5rem;
+  padding: 0;
+}
+
+.projects__title > a {
+  color: #212529;
+}
+
+.projects__title > a:hover {
+  text-decoration: none;
+  color: #000;
+}
+
