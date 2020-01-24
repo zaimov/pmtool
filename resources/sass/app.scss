@@ -7,5 +7,6 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-@import 'mixins';
+@import 'global/mixins';
+@import 'global/global';
 @import 'project/index';

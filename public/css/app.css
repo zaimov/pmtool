@@ -11356,9 +11356,12 @@ a.text-dark:focus {
   }
 }
 
+.global__card {
+  padding: 0;
+}
+
 .projects__card {
   height: 12.5rem;
-  padding: 0;
 }
 
 .projects__title > a {

@@ -1,8 +1,7 @@
-@mixin global--default {
+@mixin projects-home--default {
     .projects {
         &__card {
             height: rem(200);
-            padding: 0;
         }
         &__title {
             > a {
@@ -17,4 +16,4 @@
     }
 }
 
-@include global--default;
+@include projects-home--default;

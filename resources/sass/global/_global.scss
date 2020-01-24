@@ -1,0 +1,9 @@
+@mixin global--default {
+    .global {
+        &__card {
+            padding: 0;
+        }
+    }
+}
+
+@include global--default;
