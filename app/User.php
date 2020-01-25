@@ -38,8 +38,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+     /**
+     * Get all projects related to that user.
+     */
     public function projects()
     {
-        return $this->hasMany(Project::class, 'owner_id');
+        return $this->hasMany(Project::class, 'owner_id')->latest('updated_at');
     }
 }

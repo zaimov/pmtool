@@ -8,9 +8,12 @@ use App\Task;
 
 class ProjectTasksController extends Controller
 {
+    /**
+     * Add a task to the related project.
+     */
     public function store(Project $project)
     {
-        if(auth()->user()->isNot($project->owner)) {
+        if (auth()->user()->isNot($project->owner)) {
             abort(403);
         }
 
@@ -20,9 +23,12 @@ class ProjectTasksController extends Controller
         return redirect($project->path());
     }
 
+    /**
+     * Update the project
+     */
     public function update(Project $project, Task $task)
     {
-        if(auth()->user()->isNot($project->owner)) {
+        if (auth()->user()->isNot($task->$project->owner)) {
             abort(403);
         }
 
