@@ -16,15 +16,37 @@
             <div class="col-md-8">
                 <div class="project__tasks-wrapper mb-3">
                     <h2 class="mb-3">Tasks</h2>
-                    <div class="project__task card mb-2 p-2">
-                        Task 1
-                    </div>
-                    <div class="project__task card mb-2 p-2">
-                        Task 2
-                    </div>
-                    <div class="project__task card mb-2 p-2">
-                        Task 3
-                    </div>
+                    @foreach ($project->tasks as $task)
+                        <form class="form-inline" action="{{ $task->path() }}" method="POST">
+                            @method('PATCH')
+                            @csrf
+
+                            <input 
+                                type="text" 
+                                name="body" 
+                                class="form-control col-md-10 mb-2 mr-sm-2 {{ $task->completed ? 'text-muted' : ''}}" 
+                                value=" {{ $task->body }}"
+                            >
+
+                            <div class="form-check">  
+                                <input  
+                                    class="form-check-input" 
+                                    name="completed" 
+                                    id="completed"
+                                    type="checkbox" 
+                                    onchange="this.form.submit()"
+                                    {{ $task->completed ? 'checked' : ''}}
+                                >
+                                <label class="form-check-label">{{ $task->completed ? 'Completed' : 'Not complete'}}</label>
+                            </div>
+                        </form>
+                    @endforeach
+                    <form action="{{ $project->path() . '/tasks' }}" method="POST">
+                        @csrf 
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="Add tasks" name="body">
+                        </div>
+                    </form>
                 </div>
 
                 <div class="gnotes mb-3">
