@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProjectRequest;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -38,28 +39,25 @@ class ProjectsController extends Controller
     /**
      * Persist the project in the database.
      */
-    public function store()
+    public function store(StoreProjectRequest $request)
     {
-        $attributes = request()->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'notes' => 'min:3'
-        ]);
-        $project = auth()->user()->projects()->create($attributes);
+        $project = auth()->user()->projects()->create($request->validated());
 
         return redirect($project->path());
+    }
+
+    public function edit(Project $project)
+    {
+        return view('projects.edit', compact('project'));
     }
 
     /**
      * Update a project.
      */
-    public function update(Project $project)
+    public function update(StoreProjectRequest $request, Project $project)
     {
         $this->authorize('update', $project);
-
-        $project->update([
-            'notes' => request('notes')
-        ]);
+        $project->update($request->validated());
 
         return redirect($project->path());
     }

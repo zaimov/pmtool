@@ -7,7 +7,7 @@
                 <p>
                     <a href="/projects">My Projects</a> / {{ $project->title }}
                 </p>
-                <a href="/projects/create" class="btn btn-primary">New Project</a>
+                <a href="{{ $project->path() . '/edit' }}" class="btn btn-primary">Edit Project</a>
             </div>
         </div>
     </div>
@@ -52,6 +52,7 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
+                @include('projects.errors')
             </div>
         </div>
         <div class="col-md-4">
