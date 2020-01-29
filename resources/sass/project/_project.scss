@@ -1,0 +1,11 @@
+@mixin project--default {
+    .project {
+        &__activity {
+            .list-group-item {
+                padding: rem(5) rem(20);
+            }
+        }
+    }
+}
+
+@include project--default;

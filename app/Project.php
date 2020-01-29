@@ -40,4 +40,23 @@ class Project extends Model
     {
         return $this->tasks()->create(compact('body'));
     }
+
+    /**
+     * Get the activities for the project.
+     */
+    public function activity()
+    {
+        return $this->hasMany(Activity::class)->latest(); 
+    }
+
+    /**
+     * Record activity for a project.
+     */
+    public function recordActivity($type)
+    {
+        Activity::create([
+            'project_id' => $this->id,
+            'description' => $type
+        ]);
+    }
 }

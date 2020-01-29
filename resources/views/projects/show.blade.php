@@ -66,6 +66,10 @@
                     {{ Str::limit($project->description, 200) }}
                 </div>
             </div>
+
+            <div class="project__activity mt-3">
+                @include('projects.activity')
+            </div>
         </div>
     </div>
 

@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Project;
 
 class Task extends Model
 {
@@ -30,5 +29,42 @@ class Task extends Model
     public function path()
     {
         return "/projects/{$this->project->id}/tasks/{$this->id}";
+    }
+
+    /**
+     * Get the activities for the project.
+     */
+    public function activity()
+    {
+        return $this->morphMany(Activity::class, 'subject')->latest(); 
+    }
+
+    /**
+     * Record activity for a project.
+     */
+    public function recordActivity($description)
+    {
+        $this->activity()->create([
+            'project_id' => $this->project_id,
+            'description' => $description
+        ]);
+    }
+
+    /**
+     * Mark the project related task as complete.
+     */
+    public function complete()
+    {
+        $this->update(['completed' => true]);
+        $this->recordActivity('task_completed');
+    }
+
+    /**
+     * Mark the project related task as incomplete.
+     */ 
+    public function incomplete()
+    {
+        $this->update(['completed' => false]);
+        $this->recordActivity('task_incompleted');
     }
 }
