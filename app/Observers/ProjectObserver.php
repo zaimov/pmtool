@@ -40,14 +40,13 @@ class ProjectObserver
     }
 
     /**
-     * Handle the project "restored" event.
+     * Handle the project "updating" event.
      *
      * @param  \App\Project  $project
-     * @return void
      */
-    public function restored(Project $project)
+    public function updating(Project $project)
     {
-        //
+        $project->oldValues = $project->getOriginal();
     }
 
     /**

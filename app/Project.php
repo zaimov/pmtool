@@ -8,6 +8,8 @@ class Project extends Model
 {
     protected $guarded = [];
 
+    public $oldValues = [];
+
     /**
      * Get the path of the project.
      */
@@ -56,7 +58,18 @@ class Project extends Model
     {
         Activity::create([
             'project_id' => $this->id,
-            'description' => $type
+            'description' => $type,
+            'changes' => $this->activityChanges($type)
         ]);
+    }
+
+    protected function activityChanges($type)
+    {
+        if ($type == 'updated') {
+            return [
+                'before' => array_diff($this->oldValues, $this->getAttributes()),
+                'after' => $this->getChanges()
+            ];
+        }
     }
 }
