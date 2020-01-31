@@ -57,6 +57,7 @@ class Project extends Model
     public function recordActivity($type)
     {
         Activity::create([
+            'user_id' => ($this->project ?? $this)->owner->id,
             'project_id' => $this->id,
             'description' => $type,
             'changes' => $this->activityChanges($type)
@@ -67,8 +68,8 @@ class Project extends Model
     {
         if ($type == 'updated') {
             return [
-                'before' => array_diff($this->oldValues, $this->getAttributes()),
-                'after' => $this->getChanges()
+                'before' => array_except(array_diff($this->oldValues, $this->getAttributes()), ['updated_at']),
+                'after' => array_except($this->getChanges(), ['updated_at'])
             ];
         }
     }

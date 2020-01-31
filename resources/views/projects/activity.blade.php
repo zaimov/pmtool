@@ -4,7 +4,11 @@
             @if ($activity->description === 'created')
                 Created the project
             @elseif ($activity->description === 'updated')
-                Udated the project
+                @if (count($activity->changes['after']) == 1)
+                    {{ $activity->user->name}} updated the {{ key($activity->changes['after']) }} of the project
+                @else
+                {{ $activity->user->name}} udated the project 
+                @endif
             @elseif ($activity->description === 'task_created')
                 Created: {{ $activity->subject->body }}
             @elseif($activity->description === 'task_completed')

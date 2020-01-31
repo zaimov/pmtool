@@ -45,6 +45,7 @@ class Task extends Model
     public function recordActivity($description)
     {
         $this->activity()->create([
+            'user_id' => ($this->project ?? $this)->owner->id,
             'project_id' => $this->project_id,
             'description' => $description
         ]);
