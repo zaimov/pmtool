@@ -22,6 +22,15 @@
                             </div>
                             <div class="card-body">
                                 {{ Str::limit($project->description, 200) }}
+
+                                <div class="div">
+                                    <form method="POST" action="{{ $project->path() }}" class="text-right">
+                                        @method('DELETE')
+                                        @csrf
+
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
