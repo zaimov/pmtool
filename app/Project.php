@@ -64,6 +64,9 @@ class Project extends Model
         ]);
     }
 
+    /**
+     * Record an update of an `activity for a project.
+     */
     protected function activityChanges($type)
     {
         if ($type == 'updated') {
@@ -72,5 +75,15 @@ class Project extends Model
                 'after' => array_except($this->getChanges(), ['updated_at'])
             ];
         }
+    }
+
+    public function invite(User $user)
+    {
+        return $this->members->attach($user);
+    }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'prpject_members');
     }
 }
