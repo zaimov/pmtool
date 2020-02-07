@@ -1,7 +1,7 @@
 @mixin global--default {
     .global {
         &__card {
-            padding: 0;
+            padding: 0 0 rem(20) 0;
         }
     }
 }

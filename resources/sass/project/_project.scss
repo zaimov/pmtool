@@ -5,6 +5,11 @@
                 padding: rem(5) rem(20);
             }
         }
+        &__avatars {
+            img {
+                height: rem(40);
+            }
+        }
     }
 }
 

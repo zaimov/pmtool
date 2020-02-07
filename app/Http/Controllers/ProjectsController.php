@@ -13,7 +13,7 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects = auth()->user()->projects;
+        $projects = auth()->user()->sharedProjects();
 
         return view('projects.index', compact('projects'));
     }

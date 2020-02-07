@@ -1,14 +1,23 @@
 @extends('layouts.app')
 @section('content')
 <main class="project global">
-    <div class="row">
-        <div class="col">
-            <div class="d-flex justify-content-between mb-3">
-                <p>
-                    <a href="/projects">My Projects</a> / {{ $project->title }}
-                </p>
-                <a href="{{ $project->path() . '/edit' }}" class="btn btn-primary">Edit Project</a>
+    <div class="row align-items-center mb-3">
+        <div class="col-md-4">
+            <p>
+                <a href="/projects">My Projects</a> / {{ $project->title }}
+            </p>
+        </div>
+        <div class="col-md-4 text-left text-md-right">
+            <div class="project__avatars mb-3">
+                @foreach ($project->members as $member)
+                    <img src="https://gravatar.com/avatar/{{ md5($member->email) }}?s60" class="rounded-circle" alt="{{ $member->name }}">
+                @endforeach
+
+                <img src="https://gravatar.com/avatar/{{ md5($project->owner->email) }}?s60" class="rounded-circle" alt="{{ $project->owner->name}}">
             </div>
+        </div>
+        <div class="col-md-4 text-left text-md-right">
+            <a href="{{ $project->path() . '/edit' }}" class="btn btn-primary">Edit Project</a>
         </div>
     </div>
 
@@ -56,16 +65,11 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card shadow-sm global__card">
-                <div class="card-header">
-                    <h4 class="my-0 projects__title">
-                        <h4>{{ $project->title }}</h4>
-                    </h4>
-                </div>
-                <div class="card-body">
-                    {{ Str::limit($project->description, 200) }}
-                </div>
-            </div>
+            @include('projects.description')
+
+            @can('administer', $project)
+                @include('projects.invite')
+            @endcan
 
             <div class="project__activity mt-3">
                 @include('projects.activity')

@@ -14,25 +14,7 @@
             <div class="row">
                 @forelse ($projects as $project)
                     <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="card shadow-sm global__card projects__card">
-                            <div class="card-header">
-                                <h4 class="my-0 projects__title">
-                                    <a href="{{ $project->path() }}">{{ $project->title }}</a>
-                                </h4>
-                            </div>
-                            <div class="card-body">
-                                {{ Str::limit($project->description, 200) }}
-
-                                <div class="div">
-                                    <form method="POST" action="{{ $project->path() }}" class="text-right">
-                                        @method('DELETE')
-                                        @csrf
-
-                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        @include('projects.description')
                     </div>
                 @empty
                     <p>No projects</p>

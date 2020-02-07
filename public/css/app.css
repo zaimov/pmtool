@@ -11357,11 +11357,15 @@ a.text-dark:focus {
 }
 
 .global__card {
-  padding: 0;
+  padding: 0 0 1.25rem 0;
 }
 
 .project__activity .list-group-item {
   padding: 0.3125rem 1.25rem;
+}
+
+.project__avatars img {
+  height: 2.5rem;
 }
 
 .projects__card {
@@ -11375,5 +11379,9 @@ a.text-dark:focus {
 .projects__title > a:hover {
   text-decoration: none;
   color: #000;
+}
+
+.projects__delete {
+  padding-left: 1.25rem;
 }
 
