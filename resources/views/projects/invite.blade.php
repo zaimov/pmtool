@@ -8,5 +8,6 @@
             <input type="email" name="email" class="form-control" placeholder="Email address">
             <button class="btn btn-primary btn-sm mt-3" type="submit">Invite a Member</button>
         </form>
+        @include('projects.errors', ['bag' => 'invitations'])
     </div>
 </div>
